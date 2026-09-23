@@ -33,5 +33,10 @@ jobs:
       - name: Commit and push changes
         run: |
           git add Threat_IO_Hash/SHA-HASH-FEED.txt
+
+          if git diff --cached --quiet; then
+            echo "No changes detected."
+            exit 0
+          fi
           git commit -m "Imported SHA Hash Feed from ThreatView into Threat_IO_Hash"
           git push origin main
